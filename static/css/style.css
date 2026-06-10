@@ -11,7 +11,9 @@ body{
     display:flex;
     justify-content:center;
     align-items:center;
-    background:linear-gradient(135deg,#667eea,#764ba2);
+    background: #16222A;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #3A6073, #16222A);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #3A6073, #16222A); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 }
 
 /* Main Container */
@@ -63,7 +65,9 @@ select:focus{
 /* Button */
 button{
     padding:12px;
-    background:#667eea;
+    background: #000000;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #434343, #000000);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #434343, #000000); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
     color:white;
     border:none;
     border-radius:8px;
@@ -73,7 +77,8 @@ button{
 }
 
 button:hover{
-    background:#5568d8;
+    /* background:#E9E4F0;
+    color: black; */
     transform:translateY(-2px);
 }
 
