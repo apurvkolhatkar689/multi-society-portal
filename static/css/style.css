@@ -1,91 +1,91 @@
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 /* Body */
-body{
-    height:100vh;
-    display:flex;
-    justify-content:center;
-    align-items:center;
+body {
+    min-height: 100vh; /* Changed from height to min-height to support scrolling on smaller screens */
     background: #16222A;  /* fallback for old browsers */
     background: -webkit-linear-gradient(to right, #3A6073, #16222A);  /* Chrome 10-25, Safari 5.1-6 */
     background: linear-gradient(to right, #3A6073, #16222A); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    
+    /* Removed display: flex from here so it doesn't conflict with Bootstrap's grid structure */
 }
 
-/* Main Container */
-.container{
-    background:#fff;
-    padding:40px;
-    border-radius:15px;
-    box-shadow:0 10px 25px rgba(0,0,0,0.2);
-    width:400px;
-    text-align:center;
+/* Login Card (Renamed from .container to avoid Bootstrap conflicts) */
+.login-card {
+    background: #fff;
+    padding: 40px;
+    border-radius: 15px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+    
+    /* Removed the hardcoded width: 400px; and replaced with fluid responsive rules */
+    width: 100%;
+    max-width: 400px; 
+    margin: 0 auto; /* Centers the card within its Bootstrap column */
+    text-align: center;
 }
 
 /* Headings */
-h2{
-    color:#333;
-    margin-bottom:15px;
+h2 {
+    color: #333;
+    margin-bottom: 15px;
 }
 
-h3{
-    color:#555;
-    margin-bottom:25px;
+h3 {
+    color: #555;
+    margin-bottom: 25px;
 }
 
 /* Form */
-form{
-    display:flex;
-    flex-direction:column;
-    gap:15px;
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
 }
 
 /* Inputs */
 input,
-select{
-    width:100%;
-    padding:12px;
-    border:1px solid #ddd;
-    border-radius:8px;
-    font-size:16px;
-    transition:0.3s;
+select {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 16px;
+    transition: 0.3s;
 }
 
 input:focus,
-select:focus{
-    border-color:#414345;
-    outline:none;
-    box-shadow:0 0 8px rgba(102,126,234,0.4);
+select:focus {
+    border-color: #414345;
+    outline: none;
+    box-shadow: 0 0 8px rgba(102,126,234,0.4);
 }
 
 /* Button */
-button{
-    padding:12px;
+button {
+    padding: 12px;
     background: #000000;  /* fallback for old browsers */
     background: -webkit-linear-gradient(to right, #434343, #000000);  /* Chrome 10-25, Safari 5.1-6 */
     background: linear-gradient(to right, #434343, #000000); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-    color:white;
-    border:none;
-    border-radius:8px;
-    font-size:16px;
-    cursor:pointer;
-    transition:0.3s;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: 0.3s;
 }
 
-button:hover{
-    /* background:#E9E4F0;
-    color: black; */
-    transform:translateY(-2px);
+button:hover {
+    transform: translateY(-2px);
 }
 
-/* Mobile */
-@media(max-width:500px){
-    .container{
-        width:90%;
-        padding:25px;
+/* Mobile Adjustments */
+@media(max-width: 576px) {
+    .login-card {
+        padding: 25px;
     }
 }
