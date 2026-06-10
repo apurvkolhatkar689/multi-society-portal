@@ -5,19 +5,9 @@
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
-/* Body */
-body {
-    min-height: 100vh; /* Changed from height to min-height to support scrolling on smaller screens */
-    background: #16222A;  /* fallback for old browsers */
-    background: -webkit-linear-gradient(to right, #3A6073, #16222A);  /* Chrome 10-25, Safari 5.1-6 */
-    background: linear-gradient(to right, #3A6073, #16222A); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-    
-    /* Removed display: flex from here so it doesn't conflict with Bootstrap's grid structure */
-}
-
 /* Login Card (Renamed from .container to avoid Bootstrap conflicts) */
 .login-card {
-    background: #fff;
+    background: #e0eafc;
     padding: 40px;
     border-radius: 15px;
     box-shadow: 0 10px 25px rgba(0,0,0,0.2);

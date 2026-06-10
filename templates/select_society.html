@@ -9,6 +9,30 @@
       crossorigin="anonymous"
     />
     <link rel="stylesheet" href="static/css/style.css" />
+    <style>
+      body {
+        min-height: 100vh; /* Changed from height to min-height to support scrolling on smaller screens */
+        background: #333333; /* fallback for old browsers */
+        background: -webkit-linear-gradient(
+          to right,
+          #a43931,
+          #a2ab58,
+          #333333
+        ); /* Chrome 10-25, Safari 5.1-6 */
+        background: linear-gradient(
+          to right,
+          #a43931,
+          #a2ab58,
+          #333333
+        ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+        /* Removed display: flex from here so it doesn't conflict with Bootstrap's grid structure */
+      }
+
+      .login-card {
+        background: #e0eafc;
+      }
+    </style>
   </head>
   <body>
     <div
