@@ -57,7 +57,7 @@ select{
 
 input:focus,
 select:focus{
-    border-color:#667eea;
+    border-color:#414345;
     outline:none;
     box-shadow:0 0 8px rgba(102,126,234,0.4);
 }
