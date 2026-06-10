@@ -1,0 +1,1669 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Planet Millennium – Community Hub</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      :root {
+        --brand: #1a7ab5;
+        --brand-light: #e6f3fb;
+        --brand-mid: #2a9fd6;
+        --accent: #c8773a;
+        --accent-light: #fdf0e6;
+        --text-primary: #1c1c1c;
+        --text-secondary: #5a5a5a;
+        --text-muted: #9a9a9a;
+        --surface: #ffffff;
+        --surface-2: #f5f8fb;
+        --surface-3: #e8f2f9;
+        --border: rgba(0, 0, 0, 0.08);
+        --border-strong: rgba(0, 0, 0, 0.15);
+        --radius: 10px;
+        --radius-lg: 16px;
+        --shadow-sm: 0 1px 4px rgba(0, 0, 0, 0.06);
+        --shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+        --font-head: "DM Serif Display", Georgia, serif;
+        --font-body: "DM Sans", system-ui, sans-serif;
+      }
+
+      body {
+        font-family: var(--font-body);
+        background: var(--surface-2);
+        color: var(--text-primary);
+        font-size: 15px;
+        line-height: 1.6;
+      }
+
+      /* ── HEADER ── */
+      header {
+        background: var(--surface);
+        border-bottom: 1px solid var(--border);
+        position: sticky;
+        top: 0;
+        z-index: 100;
+      }
+      .header-inner {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 24px;
+        height: 64px;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+      .logo-mark {
+        width: 42px;
+        height: 42px;
+        border-radius: 50%;
+        background: var(--brand-light);
+        border: 1.5px solid var(--brand);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+      }
+      .logo-mark svg {
+        width: 22px;
+        height: 22px;
+      }
+      .logo-text {
+        flex: 1;
+      }
+      .logo-text h1 {
+        font-family: var(--font-head);
+        font-size: 18px;
+        color: var(--brand);
+        line-height: 1.1;
+        font-style: italic;
+      }
+      .logo-text p {
+        font-size: 11px;
+        color: var(--text-muted);
+        letter-spacing: 0.03em;
+      }
+      .nav-links {
+        display: flex;
+        gap: 4px;
+        list-style: none;
+      }
+      .nav-links a {
+        text-decoration: none;
+        font-size: 13px;
+        font-weight: 500;
+        color: var(--text-secondary);
+        padding: 6px 12px;
+        border-radius: var(--radius);
+        transition:
+          background 0.15s,
+          color 0.15s;
+      }
+      .nav-links a:hover,
+      .nav-links a.active {
+        background: var(--brand-light);
+        color: var(--brand);
+      }
+      .header-actions {
+        display: flex;
+        gap: 8px;
+        align-items: center;
+      }
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        font-family: var(--font-body);
+        font-size: 13px;
+        font-weight: 500;
+        padding: 7px 16px;
+        border-radius: var(--radius);
+        cursor: pointer;
+        border: 1.5px solid transparent;
+        transition: all 0.15s;
+        text-decoration: none;
+      }
+      .btn-ghost {
+        background: transparent;
+        border-color: var(--border-strong);
+        color: var(--text-primary);
+      }
+      .btn-ghost:hover {
+        background: var(--surface-3);
+      }
+      .btn-primary {
+        background: var(--brand);
+        color: #fff;
+        border-color: var(--brand);
+      }
+      .btn-primary:hover {
+        background: var(--brand-mid);
+      }
+      .btn-accent {
+        background: var(--accent);
+        color: #fff;
+        border-color: var(--accent);
+      }
+      .btn-accent:hover {
+        opacity: 0.9;
+      }
+      .btn-sm {
+        font-size: 12px;
+        padding: 5px 12px;
+      }
+
+      /* ── HERO STRIP ── */
+      .hero {
+        background: linear-gradient(135deg, #1a7ab5 0%, #0f4f7a 100%);
+        color: #fff;
+        padding: 40px 24px 36px;
+        text-align: center;
+      }
+      .hero h2 {
+        font-family: var(--font-head);
+        font-size: 32px;
+        font-style: italic;
+        letter-spacing: -0.02em;
+        margin-bottom: 6px;
+      }
+      .hero p {
+        font-size: 14px;
+        opacity: 0.8;
+        max-width: 440px;
+        margin: 0 auto 20px;
+      }
+      .hero-meta {
+        display: flex;
+        justify-content: center;
+        gap: 24px;
+        font-size: 12px;
+        opacity: 0.7;
+      }
+      .hero-meta span {
+        display: flex;
+        align-items: center;
+        gap: 5px;
+      }
+
+      /* ── MAIN LAYOUT ── */
+      .page-body {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 28px 24px;
+        display: grid;
+        grid-template-columns: 1fr 340px;
+        gap: 24px;
+        align-items: start;
+      }
+
+      /* ── SECTION LABELS ── */
+      .section-label {
+        font-size: 11px;
+        font-weight: 600;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: var(--text-muted);
+        margin-bottom: 12px;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+      .section-label::after {
+        content: "";
+        flex: 1;
+        height: 1px;
+        background: var(--border);
+      }
+
+      /* ── EVENTS ── */
+      .events-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 16px;
+      }
+      .tab-row {
+        display: flex;
+        gap: 4px;
+        background: var(--surface-3);
+        padding: 3px;
+        border-radius: var(--radius);
+        margin-bottom: 16px;
+      }
+      .tab {
+        flex: 1;
+        text-align: center;
+        padding: 6px 0;
+        font-size: 12px;
+        font-weight: 500;
+        border-radius: 7px;
+        cursor: pointer;
+        color: var(--text-muted);
+        transition: all 0.15s;
+        border: none;
+        background: transparent;
+        font-family: var(--font-body);
+      }
+      .tab.active {
+        background: var(--surface);
+        color: var(--brand);
+        box-shadow: var(--shadow-sm);
+      }
+
+      .event-card {
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: var(--radius-lg);
+        padding: 18px 20px;
+        margin-bottom: 12px;
+        display: flex;
+        gap: 16px;
+        align-items: flex-start;
+        transition: box-shadow 0.15s;
+      }
+      .event-card:hover {
+        box-shadow: var(--shadow);
+      }
+      .event-date-box {
+        flex-shrink: 0;
+        width: 48px;
+        text-align: center;
+        background: var(--brand-light);
+        border-radius: var(--radius);
+        padding: 8px 4px;
+      }
+      .event-date-box .month {
+        font-size: 10px;
+        font-weight: 600;
+        letter-spacing: 0.05em;
+        text-transform: uppercase;
+        color: var(--brand);
+      }
+      .event-date-box .day {
+        font-family: var(--font-head);
+        font-size: 26px;
+        line-height: 1;
+        color: var(--brand);
+      }
+      .event-info {
+        flex: 1;
+      }
+      .event-info h3 {
+        font-size: 15px;
+        font-weight: 600;
+        margin-bottom: 4px;
+        color: var(--text-primary);
+      }
+      .event-info p {
+        font-size: 13px;
+        color: var(--text-secondary);
+        margin-bottom: 10px;
+      }
+      .event-tags {
+        display: flex;
+        gap: 6px;
+        flex-wrap: wrap;
+      }
+      .tag {
+        font-size: 11px;
+        font-weight: 500;
+        padding: 3px 9px;
+        border-radius: 20px;
+      }
+      .tag-green {
+        background: var(--brand-light);
+        color: #0f4e8c;
+      }
+      .tag-amber {
+        background: #fdf0e6;
+        color: #9a5020;
+      }
+      .tag-blue {
+        background: #e8f1fb;
+        color: #1a4e8c;
+      }
+      .tag-pink {
+        background: #fde8f2;
+        color: #8c1a52;
+      }
+      .tag-gray {
+        background: var(--surface-3);
+        color: var(--text-secondary);
+      }
+
+      .event-actions {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        flex-shrink: 0;
+      }
+      .rsvp-count {
+        font-size: 12px;
+        color: var(--text-muted);
+      }
+
+      .past-event {
+        opacity: 0.65;
+      }
+      .past-event .event-date-box {
+        background: var(--surface-3);
+      }
+      .past-event .event-date-box .month,
+      .past-event .event-date-box .day {
+        color: var(--text-muted);
+      }
+
+      /* ── COMMUNITY BOARD ── */
+      .post-card {
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: var(--radius-lg);
+        padding: 16px 18px;
+        margin-bottom: 10px;
+        transition: box-shadow 0.15s;
+      }
+      .post-card:hover {
+        box-shadow: var(--shadow);
+      }
+      .post-header {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin-bottom: 8px;
+      }
+      .avatar {
+        width: 34px;
+        height: 34px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 13px;
+        font-weight: 600;
+        flex-shrink: 0;
+      }
+      .av-green {
+        background: #d4e8fb;
+        color: #0f4e8c;
+      }
+      .av-amber {
+        background: #fde8c8;
+        color: #9a5020;
+      }
+      .av-blue {
+        background: #d4e8fb;
+        color: #1a4e8c;
+      }
+      .av-pink {
+        background: #fbd4e8;
+        color: #8c1a52;
+      }
+      .post-meta {
+        flex: 1;
+      }
+      .post-meta .name {
+        font-size: 13px;
+        font-weight: 600;
+      }
+      .post-meta .time {
+        font-size: 11px;
+        color: var(--text-muted);
+      }
+      .post-body {
+        font-size: 13px;
+        color: var(--text-secondary);
+        margin-bottom: 10px;
+        line-height: 1.5;
+      }
+      .post-footer {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+      .post-actions {
+        display: flex;
+        gap: 12px;
+      }
+      .post-action-btn {
+        font-size: 12px;
+        color: var(--text-muted);
+        background: none;
+        border: none;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        gap: 4px;
+        font-family: var(--font-body);
+        padding: 4px 0;
+        transition: color 0.12s;
+      }
+      .post-action-btn:hover {
+        color: var(--brand);
+      }
+
+      /* ── NEW POST COMPOSER ── */
+      .composer {
+        background: var(--surface);
+        border: 1.5px solid var(--brand-mid);
+        border-radius: var(--radius-lg);
+        padding: 16px 18px;
+        margin-bottom: 16px;
+      }
+      .composer-top {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin-bottom: 12px;
+      }
+      .category-chips {
+        display: flex;
+        gap: 6px;
+        flex-wrap: wrap;
+        margin-bottom: 10px;
+      }
+      .chip {
+        font-size: 11px;
+        font-weight: 500;
+        padding: 4px 10px;
+        border-radius: 20px;
+        cursor: pointer;
+        border: 1px solid var(--border-strong);
+        background: transparent;
+        color: var(--text-secondary);
+        font-family: var(--font-body);
+        transition: all 0.12s;
+      }
+      .chip:hover,
+      .chip.selected {
+        background: var(--brand-light);
+        border-color: var(--brand);
+        color: var(--brand);
+      }
+      .chip.selected {
+        font-weight: 600;
+      }
+      .composer textarea {
+        width: 100%;
+        border: 1px solid var(--border);
+        border-radius: var(--radius);
+        padding: 10px 12px;
+        font-size: 13px;
+        font-family: var(--font-body);
+        resize: vertical;
+        min-height: 72px;
+        color: var(--text-primary);
+        background: var(--surface-2);
+        margin-bottom: 10px;
+        outline: none;
+        transition: border-color 0.12s;
+      }
+      .composer textarea:focus {
+        border-color: var(--brand);
+      }
+      .composer-footer {
+        display: flex;
+        justify-content: flex-end;
+        gap: 8px;
+      }
+
+      /* ── SIDEBAR ── */
+      .sidebar {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+      }
+      .widget {
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: var(--radius-lg);
+        padding: 18px 20px;
+      }
+      .widget-title {
+        font-size: 13px;
+        font-weight: 600;
+        color: var(--text-primary);
+        margin-bottom: 14px;
+        display: flex;
+        align-items: center;
+        gap: 7px;
+      }
+      .widget-title-icon {
+        width: 26px;
+        height: 26px;
+        border-radius: 7px;
+        background: var(--brand-light);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .widget-title-icon svg {
+        width: 14px;
+        height: 14px;
+        stroke: var(--brand);
+      }
+
+      /* register form */
+      .form-field {
+        margin-bottom: 10px;
+      }
+      .form-field label {
+        display: block;
+        font-size: 11px;
+        font-weight: 600;
+        letter-spacing: 0.04em;
+        text-transform: uppercase;
+        color: var(--text-muted);
+        margin-bottom: 4px;
+      }
+      .form-field input,
+      .form-field select {
+        width: 100%;
+        padding: 8px 10px;
+        border: 1px solid var(--border-strong);
+        border-radius: var(--radius);
+        font-size: 13px;
+        font-family: var(--font-body);
+        color: var(--text-primary);
+        background: var(--surface-2);
+        outline: none;
+        transition: border-color 0.12s;
+      }
+      .form-field input:focus,
+      .form-field select:focus {
+        border-color: var(--brand);
+      }
+      .divider {
+        height: 1px;
+        background: var(--border);
+        margin: 12px 0;
+      }
+      .login-link {
+        text-align: center;
+        font-size: 12px;
+        color: var(--text-muted);
+        margin-top: 10px;
+      }
+      .login-link a {
+        color: var(--brand);
+        text-decoration: none;
+        font-weight: 500;
+      }
+
+      /* quick stats */
+      .stat-row {
+        display: flex;
+        justify-content: space-between;
+        padding: 8px 0;
+        border-bottom: 1px solid var(--border);
+        font-size: 13px;
+      }
+      .stat-row:last-child {
+        border-bottom: none;
+      }
+      .stat-row .label {
+        color: var(--text-secondary);
+      }
+      .stat-row .value {
+        font-weight: 600;
+        color: var(--text-primary);
+      }
+
+      /* mini calendar */
+      .mini-event-list {
+      }
+      .mini-event {
+        display: flex;
+        gap: 10px;
+        align-items: center;
+        padding: 8px 0;
+        border-bottom: 1px solid var(--border);
+      }
+      .mini-event:last-child {
+        border-bottom: none;
+      }
+      .mini-dot {
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        flex-shrink: 0;
+      }
+      .dot-green {
+        background: #2a9fd6;
+      }
+      .dot-amber {
+        background: #c8773a;
+      }
+      .dot-blue {
+        background: #2768c4;
+      }
+      .mini-event-text {
+        flex: 1;
+      }
+      .mini-event-text .title {
+        font-size: 12px;
+        font-weight: 500;
+      }
+      .mini-event-text .date {
+        font-size: 11px;
+        color: var(--text-muted);
+      }
+
+      /* ── NOTICE BANNER ── */
+      .notice-bar {
+        background: var(--accent-light);
+        border-top: 3px solid var(--accent);
+        padding: 10px 24px;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        font-size: 13px;
+        color: #7a4010;
+        max-width: 100%;
+      }
+      .notice-bar strong {
+        font-weight: 600;
+      }
+      .notice-bar svg {
+        flex-shrink: 0;
+      }
+
+      /* ── FOOTER ── */
+      footer {
+        background: var(--surface);
+        border-top: 1px solid var(--border);
+        padding: 20px 24px;
+        text-align: center;
+        font-size: 12px;
+        color: var(--text-muted);
+      }
+      footer a {
+        color: var(--brand);
+        text-decoration: none;
+      }
+
+      /* ── MODAL OVERLAY ── */
+      .modal-backdrop {
+        display: none;
+        position: fixed;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.4);
+        z-index: 200;
+        align-items: center;
+        justify-content: center;
+        padding: 24px;
+      }
+      .modal-backdrop.open {
+        display: flex;
+      }
+      .modal {
+        background: var(--surface);
+        border-radius: var(--radius-lg);
+        padding: 28px;
+        max-width: 420px;
+        width: 100%;
+        box-shadow: 0 16px 48px rgba(0, 0, 0, 0.2);
+        animation: modalIn 0.2s ease;
+      }
+      @keyframes modalIn {
+        from {
+          opacity: 0;
+          transform: translateY(8px);
+        }
+        to {
+          opacity: 1;
+          transform: none;
+        }
+      }
+      .modal h3 {
+        font-family: var(--font-head);
+        font-size: 22px;
+        color: var(--brand);
+        margin-bottom: 16px;
+        font-style: italic;
+      }
+      .modal-footer {
+        display: flex;
+        justify-content: flex-end;
+        gap: 8px;
+        margin-top: 16px;
+      }
+      .close-btn {
+        background: none;
+        border: none;
+        cursor: pointer;
+        float: right;
+        font-size: 20px;
+        color: var(--text-muted);
+        line-height: 1;
+        margin-top: -4px;
+      }
+
+      /* ── RESPONSIVE ── */
+      @media (max-width: 800px) {
+        .page-body {
+          grid-template-columns: 1fr;
+        }
+        .nav-links {
+          display: none;
+        }
+        .hero h2 {
+          font-size: 24px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- ══ NOTICE BAR ══ -->
+    <div class="notice-bar">
+      <svg
+        width="16"
+        height="16"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+      >
+        <circle cx="12" cy="12" r="10" />
+        <line x1="12" y1="8" x2="12" y2="12" />
+        <line x1="12" y1="16" x2="12.01" y2="16" />
+      </svg>
+      <span
+        ><strong>Maintenance Notice:</strong> Water supply will be interrupted
+        on 18 May, 9 am – 1 pm. Plan accordingly. &nbsp;— Management
+        Committee</span
+      >
+    </div>
+
+    <!-- ══ HEADER ══ -->
+    <header>
+      <div class="header-inner">
+        <div class="logo-mark">
+          <svg
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="#1a6b4a"
+            stroke-width="1.8"
+          >
+            <circle cx="12" cy="12" r="9" />
+            <ellipse cx="12" cy="12" rx="4" ry="9" />
+            <line x1="3" y1="12" x2="21" y2="12" />
+          </svg>
+        </div>
+        <div class="logo-text">
+          <h1>Planet Millennium</h1>
+          <p>Co-op Hsg. Society Ltd. · Pimple Saudagar, Pune 411027</p>
+        </div>
+        <nav>
+          <ul class="nav-links">
+            <li><a href="#" class="active">Home</a></li>
+            <li><a href="#">Events</a></li>
+            <li><a href="#">Board</a></li>
+            <li><a href="#">Notices</a></li>
+            <li><a href="#">Contact</a></li>
+          </ul>
+        </nav>
+        <div class="header-actions">
+          <button
+            class="btn btn-ghost"
+            onclick="
+              document.getElementById('login-modal').classList.add('open')
+            "
+          >
+            Sign in
+          </button>
+          <button
+            class="btn btn-primary"
+            onclick="
+              document.getElementById('register-modal').classList.add('open')
+            "
+          >
+            Register
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <!-- ══ HERO ══ -->
+    <div class="hero">
+      <h2>Your Community, Connected.</h2>
+      <p>
+        Stay informed, share, and engage with fellow Planet Millennium
+        residents.
+      </p>
+      <div class="hero-meta">
+        <span>
+          <svg
+            width="13"
+            height="13"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+          >
+            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
+            <circle cx="9" cy="7" r="4" />
+            <path d="M23 21v-2a4 4 0 0 0-3-3.87" />
+            <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+          </svg>
+          248 Residents
+        </span>
+        <span>
+          <svg
+            width="13"
+            height="13"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+          >
+            <rect x="3" y="4" width="18" height="18" rx="2" ry="2" />
+            <line x1="16" y1="2" x2="16" y2="6" />
+            <line x1="8" y1="2" x2="8" y2="6" />
+            <line x1="3" y1="10" x2="21" y2="10" />
+          </svg>
+          4 Upcoming Events
+        </span>
+        <span>
+          <svg
+            width="13"
+            height="13"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+          >
+            <path
+              d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"
+            />
+          </svg>
+          12 New Posts
+        </span>
+      </div>
+    </div>
+
+    <!-- ══ PAGE BODY ══ -->
+    <div class="page-body">
+      <!-- ── LEFT: MAIN FEED ── -->
+      <div>
+        <!-- Events Section -->
+        <div class="events-header">
+          <div class="section-label" style="flex: 1; margin-bottom: 0">
+            Events &amp; Announcements
+          </div>
+          <button class="btn btn-ghost btn-sm" style="margin-left: 12px">
+            + Add Event
+          </button>
+        </div>
+
+        <div class="tab-row" style="margin-top: 12px">
+          <button class="tab active" onclick="switchTab(this, 'upcoming')">
+            Upcoming
+          </button>
+          <button class="tab" onclick="switchTab(this, 'past')">Past</button>
+          <button class="tab" onclick="switchTab(this, 'all')">All</button>
+        </div>
+
+        <!-- Upcoming Events -->
+        <div id="tab-upcoming">
+          <div class="event-card">
+            <div class="event-date-box">
+              <div class="month">May</div>
+              <div class="day">24</div>
+            </div>
+            <div class="event-info">
+              <h3>Annual General Body Meeting (AGM)</h3>
+              <p>
+                All flat owners and residents are requested to attend the AGM.
+                Agenda: budget approval, maintenance rates, and elected
+                committee review.
+              </p>
+              <div class="event-tags">
+                <span class="tag tag-green">Society</span>
+                <span class="tag tag-gray">6:30 PM · Clubhouse</span>
+              </div>
+            </div>
+            <div class="event-actions">
+              <span class="rsvp-count">34 attending</span>
+              <button class="btn btn-primary btn-sm">RSVP</button>
+            </div>
+          </div>
+
+          <div class="event-card">
+            <div class="event-date-box">
+              <div class="month">Jun</div>
+              <div class="day">1</div>
+            </div>
+            <div class="event-info">
+              <h3>Children's Day Celebration & Fun Games</h3>
+              <p>
+                Organised by residents for all children of Planet Millennium.
+                Games, snacks, and prizes! Volunteers welcome.
+              </p>
+              <div class="event-tags">
+                <span class="tag tag-pink">Festival</span>
+                <span class="tag tag-gray">4:00 PM · Garden</span>
+              </div>
+            </div>
+            <div class="event-actions">
+              <span class="rsvp-count">61 attending</span>
+              <button class="btn btn-primary btn-sm">RSVP</button>
+            </div>
+          </div>
+
+          <div class="event-card">
+            <div class="event-date-box">
+              <div class="month">Jun</div>
+              <div class="day">14</div>
+            </div>
+            <div class="event-info">
+              <h3>Yoga Camp – Monsoon Edition</h3>
+              <p>
+                Join us for a weekend yoga camp hosted by the Wellness
+                Committee. Open to all age groups. Mats will be provided.
+              </p>
+              <div class="event-tags">
+                <span class="tag tag-blue">Wellness</span>
+                <span class="tag tag-gray">7:00 AM · Terrace</span>
+              </div>
+            </div>
+            <div class="event-actions">
+              <span class="rsvp-count">19 attending</span>
+              <button class="btn btn-primary btn-sm">RSVP</button>
+            </div>
+          </div>
+
+          <div class="event-card">
+            <div class="event-date-box">
+              <div class="month">Jun</div>
+              <div class="day">29</div>
+            </div>
+            <div class="event-info">
+              <h3>Bhishi Group – Monthly Meeting</h3>
+              <p>
+                Monthly chit fund meeting for registered Bhishi group members
+                (Wing A). Contribution deadline same day.
+              </p>
+              <div class="event-tags">
+                <span class="tag tag-amber">Bhishi</span>
+                <span class="tag tag-gray">8:00 PM · Online</span>
+              </div>
+            </div>
+            <div class="event-actions">
+              <span class="rsvp-count">Members only</span>
+              <button class="btn btn-ghost btn-sm">Details</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Past Events (hidden by default) -->
+        <div id="tab-past" style="display: none">
+          <div class="event-card past-event">
+            <div class="event-date-box">
+              <div class="month">May</div>
+              <div class="day">5</div>
+            </div>
+            <div class="event-info">
+              <h3>Holi Celebration 2025</h3>
+              <p>
+                A colourful celebration enjoyed by 120+ residents in the garden.
+                Thanks to all volunteers!
+              </p>
+              <div class="event-tags">
+                <span class="tag tag-pink">Festival</span>
+                <span class="tag tag-gray">Completed</span>
+              </div>
+            </div>
+            <div class="event-actions">
+              <button class="btn btn-ghost btn-sm">Photos</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- All Events tab same as upcoming for demo -->
+        <div id="tab-all" style="display: none">
+          <p style="font-size: 13px; color: var(--text-muted); padding: 16px 0">
+            Showing all events — filter by category using the tabs above.
+          </p>
+        </div>
+
+        <!-- ── COMMUNITY BOARD ── -->
+        <div style="margin-top: 28px">
+          <div class="section-label">Community Board</div>
+
+          <!-- Composer -->
+          <div class="composer">
+            <div class="composer-top">
+              <div
+                class="avatar av-green"
+                style="width: 36px; height: 36px; font-size: 13px"
+              >
+                You
+              </div>
+              <span style="font-size: 13px; color: var(--text-muted)"
+                >What's on your mind, neighbour?</span
+              >
+            </div>
+            <div class="category-chips">
+              <button class="chip selected" onclick="selectChip(this)">
+                📢 Announcement
+              </button>
+              <button class="chip" onclick="selectChip(this)">
+                🛒 Buy / Sell
+              </button>
+              <button class="chip" onclick="selectChip(this)">
+                ✈️ Trip Planning
+              </button>
+              <button class="chip" onclick="selectChip(this)">
+                🎂 Birthday / Event
+              </button>
+              <button class="chip" onclick="selectChip(this)">
+                🔧 Help / Service
+              </button>
+              <button class="chip" onclick="selectChip(this)">
+                💬 General
+              </button>
+            </div>
+            <textarea
+              placeholder="Type your post here… (visible to all registered residents)"
+            ></textarea>
+            <div class="composer-footer">
+              <button class="btn btn-ghost btn-sm">Cancel</button>
+              <button class="btn btn-primary btn-sm">Post to Board</button>
+            </div>
+          </div>
+
+          <!-- Post 1 -->
+          <div class="post-card">
+            <div class="post-header">
+              <div class="avatar av-green">SR</div>
+              <div class="post-meta">
+                <div class="name">
+                  Sunita R.
+                  <span style="font-weight: 400; color: var(--text-muted)"
+                    >· C-304</span
+                  >
+                </div>
+                <div class="time">2 hours ago · 🛒 Buy / Sell</div>
+              </div>
+              <span class="tag tag-amber" style="font-size: 11px"
+                >Buy / Sell</span
+              >
+            </div>
+            <div class="post-body">
+              Selling a barely-used Pigeon induction cooktop (2000W). Original
+              box, warranty card available. Asking ₹1,800. Interested residents
+              please ping me on WhatsApp or reply here.
+            </div>
+            <div class="post-footer">
+              <div class="post-actions">
+                <button class="post-action-btn">
+                  <svg
+                    width="14"
+                    height="14"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                  >
+                    <path
+                      d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"
+                    />
+                  </svg>
+                  Reply (3)
+                </button>
+                <button class="post-action-btn">
+                  <svg
+                    width="14"
+                    height="14"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                  >
+                    <path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8" />
+                    <polyline points="16 6 12 2 8 6" />
+                    <line x1="12" y1="2" x2="12" y2="15" />
+                  </svg>
+                  Refer a buyer
+                </button>
+              </div>
+              <span style="font-size: 11px; color: var(--text-muted)"
+                >8 views</span
+              >
+            </div>
+          </div>
+
+          <!-- Post 2 -->
+          <div class="post-card">
+            <div class="post-header">
+              <div class="avatar av-blue">AK</div>
+              <div class="post-meta">
+                <div class="name">
+                  Ajay K.
+                  <span style="font-weight: 400; color: var(--text-muted)"
+                    >· B-102</span
+                  >
+                </div>
+                <div class="time">Yesterday · ✈️ Trip Planning</div>
+              </div>
+              <span class="tag tag-blue" style="font-size: 11px"
+                >Trip Planning</span
+              >
+            </div>
+            <div class="post-body">
+              Planning a road trip to Mahabaleshwar for the first weekend of
+              June — 4 seats available in my Innova. Families welcome! Sharing
+              cost equally. Drop a reply or refer anyone interested.
+            </div>
+            <div class="post-footer">
+              <div class="post-actions">
+                <button class="post-action-btn">
+                  <svg
+                    width="14"
+                    height="14"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                  >
+                    <path
+                      d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"
+                    />
+                  </svg>
+                  Reply (7)
+                </button>
+                <button class="post-action-btn">
+                  <svg
+                    width="14"
+                    height="14"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                  >
+                    <path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8" />
+                    <polyline points="16 6 12 2 8 6" />
+                    <line x1="12" y1="2" x2="12" y2="15" />
+                  </svg>
+                  Refer someone
+                </button>
+              </div>
+              <span style="font-size: 11px; color: var(--text-muted)"
+                >24 views</span
+              >
+            </div>
+          </div>
+
+          <!-- Post 3 -->
+          <div class="post-card">
+            <div class="post-header">
+              <div class="avatar av-pink">PM</div>
+              <div class="post-meta">
+                <div class="name">
+                  Priya M.
+                  <span style="font-weight: 400; color: var(--text-muted)"
+                    >· A-201</span
+                  >
+                </div>
+                <div class="time">2 days ago · 🎂 Birthday / Event</div>
+              </div>
+              <span class="tag tag-pink" style="font-size: 11px">Birthday</span>
+            </div>
+            <div class="post-body">
+              🎉 My son Kartik turns 7 this Sunday! Inviting all Planet
+              Millennium kids to a small birthday party in the Garden — 5 PM
+              onwards. Cake, games, and snacks for everyone. You're all welcome!
+            </div>
+            <div class="post-footer">
+              <div class="post-actions">
+                <button class="post-action-btn">
+                  <svg
+                    width="14"
+                    height="14"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                  >
+                    <path
+                      d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"
+                    />
+                  </svg>
+                  Reply (12)
+                </button>
+                <button class="post-action-btn">
+                  <svg
+                    width="14"
+                    height="14"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                  >
+                    <path
+                      d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"
+                    />
+                  </svg>
+                  Wish Kartik!
+                </button>
+              </div>
+              <span style="font-size: 11px; color: var(--text-muted)"
+                >41 views</span
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── SIDEBAR ── -->
+      <aside class="sidebar">
+        <!-- Registration Widget -->
+        <div
+          class="widget"
+          style="border-color: var(--brand); border-width: 1.5px"
+        >
+          <div class="widget-title">
+            <div class="widget-title-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke-width="2">
+                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+                <circle cx="12" cy="7" r="4" />
+              </svg>
+            </div>
+            Join the Community
+          </div>
+          <div class="form-field">
+            <label>Full Name</label>
+            <input type="text" placeholder="e.g. Ramesh Sharma" />
+          </div>
+          <div class="form-field">
+            <label>Flat Number</label>
+            <input type="text" placeholder="e.g. B-204" />
+          </div>
+          <div class="form-field">
+            <label>Mobile</label>
+            <input type="tel" placeholder="+91 98765 43210" />
+          </div>
+          <div class="form-field">
+            <label>Email</label>
+            <input type="email" placeholder="your@email.com" />
+          </div>
+          <div class="form-field">
+            <label>Wing / Block</label>
+            <select>
+              <option value="">Select wing</option>
+              <option>Wing A</option>
+              <option>Wing B</option>
+              <option>Wing C</option>
+              <option>Wing D</option>
+            </select>
+          </div>
+          <button
+            class="btn btn-primary"
+            style="width: 100%; justify-content: center; margin-top: 4px"
+          >
+            Register as Resident
+          </button>
+          <div class="login-link">
+            Already registered?
+            <a
+              href="#"
+              onclick="
+                document.getElementById('login-modal').classList.add('open');
+                return false;
+              "
+              >Sign in here</a
+            >
+          </div>
+        </div>
+
+        <!-- Society Stats -->
+        <div class="widget">
+          <div class="widget-title">
+            <div class="widget-title-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke-width="2">
+                <polyline points="22 12 18 12 15 21 9 3 6 12 2 12" />
+              </svg>
+            </div>
+            Society at a Glance
+          </div>
+          <div class="stat-row">
+            <span class="label">Total Flats</span><span class="value">192</span>
+          </div>
+          <div class="stat-row">
+            <span class="label">Registered Members</span
+            ><span class="value">248</span>
+          </div>
+          <div class="stat-row">
+            <span class="label">Active Wings</span
+            ><span class="value">A, B, C, D</span>
+          </div>
+          <div class="stat-row">
+            <span class="label">Reg. No.</span
+            ><span class="value" style="font-size: 11px"
+              >PNA(3)/HSG/TC6182/2003-04</span
+            >
+          </div>
+          <div class="stat-row">
+            <span class="label">Contact</span
+            ><span class="value">020-27404107</span>
+          </div>
+        </div>
+
+        <!-- Upcoming Quick List -->
+        <div class="widget">
+          <div class="widget-title">
+            <div class="widget-title-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke-width="2">
+                <rect x="3" y="4" width="18" height="18" rx="2" ry="2" />
+                <line x1="16" y1="2" x2="16" y2="6" />
+                <line x1="8" y1="2" x2="8" y2="6" />
+                <line x1="3" y1="10" x2="21" y2="10" />
+              </svg>
+            </div>
+            Coming Up
+          </div>
+          <div class="mini-event-list">
+            <div class="mini-event">
+              <div class="mini-dot dot-green"></div>
+              <div class="mini-event-text">
+                <div class="title">AGM Meeting</div>
+                <div class="date">24 May · 6:30 PM</div>
+              </div>
+            </div>
+            <div class="mini-event">
+              <div class="mini-dot dot-amber"></div>
+              <div class="mini-event-text">
+                <div class="title">Children's Day Celebration</div>
+                <div class="date">1 Jun · 4:00 PM</div>
+              </div>
+            </div>
+            <div class="mini-event">
+              <div class="mini-dot dot-blue"></div>
+              <div class="mini-event-text">
+                <div class="title">Yoga Camp</div>
+                <div class="date">14 Jun · 7:00 AM</div>
+              </div>
+            </div>
+            <div class="mini-event">
+              <div class="mini-dot dot-amber"></div>
+              <div class="mini-event-text">
+                <div class="title">Bhishi Meeting (Wing A)</div>
+                <div class="date">29 Jun · 8:00 PM</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Quick Links -->
+        <div class="widget">
+          <div class="widget-title">
+            <div class="widget-title-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke-width="2">
+                <path
+                  d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"
+                />
+                <path
+                  d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"
+                />
+              </svg>
+            </div>
+            Quick Links
+          </div>
+          <div style="display: flex; flex-direction: column; gap: 6px">
+            <a
+              href="#"
+              style="
+                font-size: 13px;
+                color: var(--brand);
+                text-decoration: none;
+                display: flex;
+                align-items: center;
+                gap: 6px;
+              "
+            >
+              <svg
+                width="13"
+                height="13"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <path
+                  d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"
+                />
+                <polyline points="14 2 14 8 20 8" />
+              </svg>
+              Society Bye-Laws & Rules
+            </a>
+            <a
+              href="#"
+              style="
+                font-size: 13px;
+                color: var(--brand);
+                text-decoration: none;
+                display: flex;
+                align-items: center;
+                gap: 6px;
+              "
+            >
+              <svg
+                width="13"
+                height="13"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <circle cx="12" cy="12" r="10" />
+                <polyline points="12 6 12 12 16 14" />
+              </svg>
+              Maintenance Due Dates
+            </a>
+            <a
+              href="#"
+              style="
+                font-size: 13px;
+                color: var(--brand);
+                text-decoration: none;
+                display: flex;
+                align-items: center;
+                gap: 6px;
+              "
+            >
+              <svg
+                width="13"
+                height="13"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <path
+                  d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13 19.79 19.79 0 0 1 1.6 4.37 2 2 0 0 1 3.57 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91A16 16 0 0 0 15 16.91l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 23 17z"
+                />
+              </svg>
+              Emergency Contacts
+            </a>
+            <a
+              href="#"
+              style="
+                font-size: 13px;
+                color: var(--brand);
+                text-decoration: none;
+                display: flex;
+                align-items: center;
+                gap: 6px;
+              "
+            >
+              <svg
+                width="13"
+                height="13"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
+                <circle cx="12" cy="10" r="3" />
+              </svg>
+              Society Location (Map)
+            </a>
+          </div>
+        </div>
+      </aside>
+    </div>
+
+    <!-- ══ FOOTER ══ -->
+    <footer>
+      <p>
+        © 2025 Planet Millennium Co-op Hsg. Society Ltd. · Pimple Saudagar, Pune
+        411027 · GST: 27AAAJP0460H1ZA · <a href="#">Privacy Policy</a> ·
+        <a href="#">Contact Committee</a>
+      </p>
+    </footer>
+
+    <!-- ══ MODALS ══ -->
+
+    <!-- Login Modal -->
+    <div
+      class="modal-backdrop"
+      id="login-modal"
+      onclick="if (event.target === this) this.classList.remove('open');"
+    >
+      <div class="modal">
+        <button
+          class="close-btn"
+          onclick="
+            document.getElementById('login-modal').classList.remove('open')
+          "
+        >
+          ×
+        </button>
+        <h3>Welcome Back</h3>
+        <div class="form-field">
+          <label>Mobile / Email</label>
+          <input type="text" placeholder="Registered mobile or email" />
+        </div>
+        <div class="form-field">
+          <label>Password</label>
+          <input type="password" placeholder="Enter your password" />
+        </div>
+        <div class="modal-footer">
+          <button
+            class="btn btn-ghost"
+            onclick="
+              document.getElementById('login-modal').classList.remove('open')
+            "
+          >
+            Cancel
+          </button>
+          <button class="btn btn-primary">Sign In</button>
+        </div>
+        <div class="login-link" style="margin-top: 12px">
+          Not registered?
+          <a
+            href="#"
+            onclick="
+              document.getElementById('login-modal').classList.remove('open');
+              document.getElementById('register-modal').classList.add('open');
+              return false;
+            "
+            >Create account</a
+          >
+        </div>
+      </div>
+    </div>
+
+    <!-- Register Modal (full) -->
+    <div
+      class="modal-backdrop"
+      id="register-modal"
+      onclick="if (event.target === this) this.classList.remove('open');"
+    >
+      <div class="modal">
+        <button
+          class="close-btn"
+          onclick="
+            document.getElementById('register-modal').classList.remove('open')
+          "
+        >
+          ×
+        </button>
+        <h3>Join Planet Millennium</h3>
+        <div class="form-field">
+          <label>Full Name</label>
+          <input type="text" placeholder="Your full name" />
+        </div>
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px">
+          <div class="form-field">
+            <label>Flat No.</label>
+            <input type="text" placeholder="e.g. B-204" />
+          </div>
+          <div class="form-field">
+            <label>Wing</label>
+            <select>
+              <option>Wing A</option>
+              <option>Wing B</option>
+              <option>Wing C</option>
+              <option>Wing D</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-field">
+          <label>Mobile</label>
+          <input type="tel" placeholder="+91 XXXXX XXXXX" />
+        </div>
+        <div class="form-field">
+          <label>Email</label>
+          <input type="email" placeholder="your@email.com" />
+        </div>
+        <div class="form-field">
+          <label>Create Password</label>
+          <input type="password" placeholder="Min. 8 characters" />
+        </div>
+        <div class="modal-footer">
+          <button
+            class="btn btn-ghost"
+            onclick="
+              document.getElementById('register-modal').classList.remove('open')
+            "
+          >
+            Cancel
+          </button>
+          <button class="btn btn-primary">Register</button>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      function switchTab(el, tab) {
+        document
+          .querySelectorAll(".tab")
+          .forEach((t) => t.classList.remove("active"));
+        el.classList.add("active");
+        ["upcoming", "past", "all"].forEach((id) => {
+          document.getElementById("tab-" + id).style.display =
+            id === tab ? "block" : "none";
+        });
+      }
+      function selectChip(el) {
+        document
+          .querySelectorAll(".chip")
+          .forEach((c) => c.classList.remove("selected"));
+        el.classList.add("selected");
+      }
+    </script>
+  </body>
+</html>
