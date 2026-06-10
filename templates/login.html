@@ -2,24 +2,21 @@
 <html>
   <head>
     <title>Login</title>
+    <link rel="stylesheet" href="static/css/style.css" />
   </head>
   <body>
-    <h2>{{.Society}}</h2>
+    <div class="container">
+      <h2>{{.Society}}</h2>
 
-    <h3>Resident Login</h3>
+      <h3>Resident Login</h3>
 
-    <form>
-      Email :
-      <input type="email" />
+      <form>
+        <input type="email" placeholder="Enter Email Address" />
 
-      <br /><br />
+        <input type="password" placeholder="Enter Password" />
 
-      Password :
-      <input type="password" />
-
-      <br /><br />
-
-      <button>Login</button>
-    </form>
+        <button type="submit">Login</button>
+      </form>
+    </div>
   </body>
 </html>

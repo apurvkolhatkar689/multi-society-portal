@@ -5,22 +5,19 @@
     <link rel="stylesheet" href="static/css/style.css" />
   </head>
   <body>
-    <h2>Select Your Society</h2>
+    <div class="container">
+      <h2>Select Your Society</h2>
 
-    <form action="/login" method="GET">
-      <select name="society">
-        <option value="">--Select Society--</option>
+      <form action="/login" method="GET">
+        <select name="society">
+          <option value="">-- Select Society --</option>
+          <option value="Planet Millennium">Planet Millennium</option>
+          <option value="Green Acres">Green Acres</option>
+          <option value="Rose Valley">Rose Valley</option>
+        </select>
 
-        <option value="Planet Millennium">Planet Millennium</option>
-
-        <option value="Green Acres">Green Acres</option>
-
-        <option value="Rose Valley">Rose Valley</option>
-      </select>
-
-      <br /><br />
-
-      <button type="submit">Continue</button>
-    </form>
+        <button type="submit">Continue</button>
+      </form>
+    </div>
   </body>
 </html>
