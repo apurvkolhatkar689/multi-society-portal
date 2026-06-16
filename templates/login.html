@@ -138,6 +138,20 @@
     >
       <div class="box">
         <h2>{{.Society}}</h2>
+        {{if .Success}}
+        <div
+          style="
+            background: #d4edda;
+            color: #155724;
+            padding: 10px;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            font-weight: bold;
+          "
+        >
+          {{.Success}}
+        </div>
+        {{end}}
         <!-- Tabs -->
         <div class="tabs">
           <div class="tab active" onclick="showTab(0)">Resident Login</div>
@@ -157,9 +171,15 @@
 
         <!-- Tab 2 -->
         <div class="form">
-          <input type="text" placeholder="Enter Email Address" />
-          <input type="password" placeholder="Enter Password" />
+          <input type="text" placeholder="Enter Email Address" required />
+          <input type="password" placeholder="Enter Password" required />
           <button>Login as Committee Member</button>
+          <div class="register-link">
+            New Committee Member?
+            <a href="/committee-registration?society={{.Society}}">
+              Register Here
+            </a>
+          </div>
         </div>
       </div>
     </div>

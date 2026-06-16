@@ -99,20 +99,13 @@
     >
       <div class="container">
         <!-- <h2>{{.Society}}</h2> -->
-        <h3>Resident Registration</h3>
+        <h3>Committee Registration</h3>
         <br />
-        <form method="POST" action="/register">
+        <form method="POST" action="/committee-register">
           <input
             type="text"
             name="full_name"
             placeholder="Full Name"
-            required
-          />
-
-          <input
-            type="number"
-            name="flat_number"
-            placeholder="Flat Number"
             required
           />
 
@@ -125,7 +118,30 @@
 
           <input type="email" name="email" placeholder="Email" required />
 
-          <input type="text" name="wing" placeholder="Wing / Block" required />
+          <input type="text" name="username" placeholder="Username" required />
+
+          <input
+            type="password"
+            name="password"
+            placeholder="Create Password"
+            required
+          />
+
+          <input
+            type="password"
+            name="confirm_password"
+            placeholder="Confirm Password"
+            required
+          />
+
+          <select name="designation" required>
+            <option value="">Select Designation</option>
+            <option>Chairman</option>
+            <option>Secretary</option>
+            <option>Treasurer</option>
+            <option>Joint Secretary</option>
+            <option>Committee Member</option>
+          </select>
 
           <button type="submit">Register</button>
         </form>
