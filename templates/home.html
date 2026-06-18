@@ -1,0 +1,213 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Society Portal</title>
+
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Segoe UI", sans-serif;
+      }
+
+      body {
+        background: #f5f7fa;
+      }
+
+      /* HEADER */
+      header {
+        background: linear-gradient(to right, #434343, #000000);
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+      }
+
+      .navbar {
+        padding: 15px 0;
+      }
+
+      .logo {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        color: white;
+        text-decoration: none;
+      }
+
+      .logo img {
+        width: 55px;
+        height: 55px;
+        border-radius: 50%;
+        background: white;
+        padding: 5px;
+      }
+
+      .logo h2 {
+        margin: 0;
+        font-size: 1.4rem;
+        font-weight: 600;
+      }
+
+      .nav-links {
+        display: flex;
+        gap: 30px;
+      }
+
+      .nav-links a {
+        color: white;
+        text-decoration: none;
+        font-size: 16px;
+        font-weight: 500;
+        transition: 0.3s;
+        position: relative;
+      }
+
+      .nav-links a:hover {
+        color: #a2ab58;
+      }
+
+      .nav-links a::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        bottom: -5px;
+        width: 0%;
+        height: 2px;
+        background: #a2ab58;
+        transition: 0.3s;
+      }
+
+      .nav-links a:hover::after {
+        width: 100%;
+      }
+
+      .login-btn {
+        background: #a2ab58;
+        color: white;
+        border: none;
+        padding: 10px 22px;
+        border-radius: 30px;
+        font-weight: 600;
+        transition: 0.3s;
+        text-decoration: none;
+      }
+
+      .login-btn:hover {
+        background: #889247;
+        transform: translateY(-2px);
+      }
+
+      /* HERO SECTION */
+
+      .hero {
+        min-height: 90vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        background:
+          linear-gradient(rgba(0, 0, 0, 0.55), rgba(0, 0, 0, 0.55)),
+          url("https://images.unsplash.com/photo-1460317442991-0ec209397118?q=80&w=1920")
+            center/cover;
+      }
+
+      .hero-content {
+        color: white;
+        max-width: 800px;
+        padding: 20px;
+      }
+
+      .hero-content h1 {
+        font-size: 3.5rem;
+        margin-bottom: 20px;
+        font-weight: 700;
+      }
+
+      .hero-content p {
+        font-size: 1.2rem;
+        margin-bottom: 30px;
+      }
+
+      .hero-btn {
+        background: #a2ab58;
+        color: white;
+        text-decoration: none;
+        padding: 14px 30px;
+        border-radius: 30px;
+        font-size: 18px;
+        font-weight: 600;
+        transition: 0.3s;
+      }
+
+      .hero-btn:hover {
+        background: #889247;
+      }
+
+      /* MOBILE */
+
+      @media (max-width: 768px) {
+        .nav-links {
+          gap: 15px;
+          flex-wrap: wrap;
+          justify-content: center;
+        }
+
+        .hero-content h1 {
+          font-size: 2.3rem;
+        }
+
+        .logo h2 {
+          font-size: 1rem;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <header>
+      <div class="container">
+        <nav class="navbar d-flex justify-content-between align-items-center">
+          <a href="#" class="logo">
+            <img
+              src="https://cdn-icons-png.flaticon.com/512/619/619153.png"
+              alt="Logo"
+            />
+            <h2>Planet Millenium Society</h2>
+          </a>
+
+          <div class="nav-links">
+            <a href="#">Home</a>
+            <a href="#">Events</a>
+            <a href="#">Board</a>
+            <a href="#">Notices</a>
+            <a href="#">Contact</a>
+          </div>
+
+          <a href="/login" class="login-btn"> Login </a>
+        </nav>
+      </div>
+    </header>
+
+    <section class="hero">
+      <div class="hero-content">
+        <h1>Welcome to Society Portal</h1>
+
+        <p>
+          Stay connected with your community. Access notices, upcoming events,
+          committee updates, and important society information all in one place.
+        </p>
+
+        <a href="/login" class="hero-btn"> Get Started </a>
+      </div>
+    </section>
+  </body>
+</html>

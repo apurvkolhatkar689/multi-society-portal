@@ -39,12 +39,25 @@
         border-radius: 15px;
         box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
         width: 100%;
-        max-width: 400px;
+        max-width: 700px;
         margin: 0 auto; /* Centers the card within its Bootstrap column */
         text-align: center;
       }
 
       form {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+      }
+
+      .form-columns {
+        display: flex;
+        gap: 20px;
+        text-align: left;
+      }
+
+      .form-col {
+        flex: 1;
         display: flex;
         flex-direction: column;
         gap: 15px;
@@ -91,6 +104,12 @@
       button:hover {
         transform: translateY(-2px);
       }
+
+      @media (max-width: 576px) {
+        .form-columns {
+          flex-direction: column;
+        }
+      }
     </style>
   </head>
   <body>
@@ -102,46 +121,57 @@
         <h3>Committee Registration</h3>
         <br />
         <form method="POST" action="/committee-register">
-          <input
-            type="text"
-            name="full_name"
-            placeholder="Full Name"
-            required
-          />
+          <div class="form-columns">
+            <div class="form-col">
+              <input
+                type="text"
+                name="full_name"
+                placeholder="Full Name"
+                required
+              />
 
-          <input
-            type="tel"
-            name="mobile"
-            placeholder="Mobile Number"
-            required
-          />
+              <input
+                type="tel"
+                name="mobile"
+                placeholder="Mobile Number"
+                required
+              />
 
-          <input type="email" name="email" placeholder="Email" required />
+              <input type="email" name="email" placeholder="Email" required />
 
-          <input type="text" name="username" placeholder="Username" required />
+              <input
+                type="text"
+                name="username"
+                placeholder="Username"
+                required
+              />
+            </div>
 
-          <input
-            type="password"
-            name="password"
-            placeholder="Create Password"
-            required
-          />
+            <div class="form-col">
+              <input
+                type="password"
+                name="password"
+                placeholder="Create Password"
+                required
+              />
 
-          <input
-            type="password"
-            name="confirm_password"
-            placeholder="Confirm Password"
-            required
-          />
+              <input
+                type="password"
+                name="confirm_password"
+                placeholder="Confirm Password"
+                required
+              />
 
-          <select name="designation" required>
-            <option value="">Select Designation</option>
-            <option>Chairman</option>
-            <option>Secretary</option>
-            <option>Treasurer</option>
-            <option>Joint Secretary</option>
-            <option>Committee Member</option>
-          </select>
+              <select name="designation" required>
+                <option value="">Select Designation</option>
+                <option>Chairman</option>
+                <option>Secretary</option>
+                <option>Treasurer</option>
+                <option>Joint Secretary</option>
+                <option>Committee Member</option>
+              </select>
+            </div>
+          </div>
 
           <button type="submit">Register</button>
         </form>

@@ -139,6 +139,162 @@ func committeeRegisterHandler(w http.ResponseWriter, r *http.Request) {
 	)
 }
 
+func homeHandler(w http.ResponseWriter, r *http.Request) {
+	tmpl := template.Must(template.ParseFiles("templates/home.html"))
+	tmpl.Execute(w, nil)
+}
+
+// func residentLoginHandler(w http.ResponseWriter, r *http.Request) {
+
+// 	if r.Method != http.MethodPost {
+// 		http.Error(w, "Method not allowed", http.StatusMethodNotAllowed)
+// 		return
+// 	}
+
+// 	email := r.FormValue("email")
+// 	mobile := r.FormValue("mobile")
+
+// 	var residentID int
+
+// 	err := database.DB.QueryRow(
+// 		`SELECT id
+// 		 FROM residents
+// 		 WHERE email=$1 AND mobile=$2`,
+// 		email,
+// 		mobile,
+// 	).Scan(&residentID)
+
+// 	if err != nil {
+// 		http.Error(w, "Invalid Credentials", http.StatusUnauthorized)
+// 		return
+// 	}
+
+// 	http.Redirect(w, r, "/resident-dashboard", http.StatusSeeOther)
+// }
+
+// func committeeLoginHandler(w http.ResponseWriter, r *http.Request) {
+
+// 	if r.Method != http.MethodPost {
+// 		http.Error(w, "Method not allowed", http.StatusMethodNotAllowed)
+// 		return
+// 	}
+
+// 	email := r.FormValue("email")
+// 	password := r.FormValue("password")
+
+// 	var storedPassword string
+
+// 	err := database.DB.QueryRow(
+// 		`SELECT password_hash
+// 		 FROM committee_members
+// 		 WHERE email=$1`,
+// 		email,
+// 	).Scan(&storedPassword)
+
+// 	if err != nil {
+// 		http.Error(w, "Invalid Credentials", http.StatusUnauthorized)
+// 		return
+// 	}
+
+// 	if password != storedPassword {
+// 		http.Error(w, "Invalid Credentials", http.StatusUnauthorized)
+// 		return
+// 	}
+
+// 	http.Redirect(w, r, "/committee-dashboard", http.StatusSeeOther)
+// }
+
+func residentDashboardHandler(w http.ResponseWriter, r *http.Request) {
+	w.Write([]byte("Welcome Resident"))
+}
+
+func committeeDashboardHandler(w http.ResponseWriter, r *http.Request) {
+	w.Write([]byte("Welcome Committee Member"))
+}
+
+func residentLoginHandler(w http.ResponseWriter, r *http.Request) {
+
+	if r.Method != http.MethodPost {
+		http.Error(w, "Method not allowed", http.StatusMethodNotAllowed)
+		return
+	}
+
+	email := r.FormValue("email")
+	mobile := r.FormValue("mobile")
+
+	var residentID int
+
+	err := database.DB.QueryRow(
+		`SELECT id
+		 FROM residents
+		 WHERE email = $1
+		 AND mobile = $2`,
+		email,
+		mobile,
+	).Scan(&residentID)
+
+	if err != nil {
+		w.Header().Set("Content-Type", "text/html")
+		w.WriteHeader(http.StatusUnauthorized)
+
+		_, _ = w.Write([]byte(`
+			<!DOCTYPE html>
+			<html>
+			<head>
+				<script>
+					alert("Invalid Email or Mobile Number");
+					window.location.href = "/login";
+				</script>
+			</head>
+			<body></body>
+			</html>
+		`))
+		return
+	}
+
+	// Login successful
+	http.Redirect(w, r, "/home", http.StatusSeeOther)
+}
+
+func committeeLoginHandler(w http.ResponseWriter, r *http.Request) {
+
+	if r.Method != http.MethodPost {
+		w.Write([]byte(`
+<script>
+alert('Invalid Credentials');
+window.location='/login';
+</script>
+`))
+		return
+	}
+
+	email := r.FormValue("email")
+	password := r.FormValue("password")
+
+	var committeeID int
+
+	err := database.DB.QueryRow(
+		`SELECT id
+		 FROM committee_members
+		 WHERE email = $1
+		 AND password_hash = $2`,
+		email,
+		password,
+	).Scan(&committeeID)
+
+	if err != nil {
+		w.Write([]byte(`
+<script>
+alert('Invalid Credentials');
+window.location='/login';
+</script>
+`))
+		return
+	}
+
+	http.Redirect(w, r, "/home", http.StatusSeeOther)
+}
+
 func main() {
 
 	// Load .env file
@@ -162,6 +318,11 @@ func main() {
 	http.HandleFunc("/committee-registration", committeeRegistrationHandler)
 	http.HandleFunc("/register", registerResidentHandler)
 	http.HandleFunc("/committee-register", committeeRegisterHandler)
+	http.HandleFunc("/home", homeHandler)
+	http.HandleFunc("/resident-login", residentLoginHandler)
+	http.HandleFunc("/committee-login", committeeLoginHandler)
+	http.HandleFunc("/resident-dashboard", residentDashboardHandler)
+	http.HandleFunc("/committee-dashboard", committeeDashboardHandler)
 	log.Println("🚀 Server started at :8080")
 
 	err = http.ListenAndServe(":8080", nil)

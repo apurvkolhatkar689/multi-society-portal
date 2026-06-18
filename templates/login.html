@@ -82,6 +82,12 @@
         gap: 15px;
       }
 
+      .form form {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+      }
+
       .form.active {
         display: flex;
       }
@@ -160,9 +166,24 @@
 
         <!-- Tab 1 -->
         <div class="form active">
-          <input type="text" placeholder="Enter Email Address" />
-          <input type="password" placeholder="Enter Password" />
-          <button>Login as Resident Member</button>
+          <form method="POST" action="/resident-login">
+            <input
+              type="email"
+              name="email"
+              placeholder="Enter Email Address"
+              required
+            />
+
+            <input
+              type="tel"
+              name="mobile"
+              placeholder="Enter Mobile Number"
+              required
+            />
+
+            <button type="submit">Login as Resident Member</button>
+          </form>
+
           <div class="register-link">
             New Resident?
             <a href="/registration?society={{.Society}}">Register Here</a>
@@ -170,17 +191,23 @@
         </div>
 
         <!-- Tab 2 -->
-        <div class="form">
-          <input type="text" placeholder="Enter Email Address" required />
-          <input type="password" placeholder="Enter Password" required />
-          <button>Login as Committee Member</button>
-          <div class="register-link">
-            New Committee Member?
-            <a href="/committee-registration?society={{.Society}}">
-              Register Here
-            </a>
-          </div>
-        </div>
+        <form class="form" method="POST" action="/committee-login">
+          <input
+            type="email"
+            name="email"
+            placeholder="Enter Email Address"
+            required
+          />
+
+          <input
+            type="password"
+            name="password"
+            placeholder="Enter Password"
+            required
+          />
+
+          <button type="submit">Login as Committee Member</button>
+        </form>
       </div>
     </div>
 
